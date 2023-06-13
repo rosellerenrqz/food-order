@@ -3,17 +3,20 @@ import classes from "./MainHeader.module.css";
 
 import images from "../../../assets/taco-logo.jpg";
 import image from "../../../assets/tacs.jpg";
+import Button from "../../../UI/Button/Button";
+
+import HeaderCartButton from "../HeaderCartButton/HeaderCartButton";
 
 const Header = () => {
   return (
     <React.Fragment>
       <div className={classes.header}>
-        <h1>Food Ordering</h1>
-        <button>Cart</button>
+        <h1>Besh Taco</h1>
+        <HeaderCartButton />
       </div>
       <div className={classes["main-image"]}>
         <img src={images} alt="" />
-        <img src={image} alt="a delicious food" />
+        <img src={image} alt="" />
       </div>
     </React.Fragment>
   );

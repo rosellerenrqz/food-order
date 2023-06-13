@@ -4,11 +4,11 @@ import classes from "./MealsSummary.module.css";
 const MealsSummary = () => {
   return (
     <>
-      <section>
+      <section className={classes.summary}>
         <h2>Delicious Food, Delivered To You</h2>
         <p>
           Craving the ultimate taco experience? Look no further than Besh Taco!
-          🌮 Our mouthwatering creation is a symphony of flavors that will
+          Our mouthwatering creation is a symphony of flavors that will
           transport your taste buds to culinary bliss. With the perfect balance
           of savory fillings, fresh ingredients, and our secret sauce, every
           bite is a fiesta of deliciousness. Whether you prefer the classic

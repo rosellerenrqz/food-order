@@ -28,7 +28,7 @@ const AvailableMeals = () => {
       <section className={classes.meals}>
         <ul>
           {DUMMY_MEALS.map((meal) => (
-            <li>{meal.name}</li>
+            <li key={meal.id}>{meal.name}</li>
           ))}
         </ul>
       </section>

@@ -3,8 +3,6 @@ import classes from "./MainHeader.module.css";
 
 import images from "../../../assets/taco-logo.jpg";
 import image from "../../../assets/tacs.jpg";
-import Button from "../../../UI/Button/Button";
-
 import HeaderCartButton from "../HeaderCartButton/HeaderCartButton";
 
 const Header = () => {

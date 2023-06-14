@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <React.Fragment>
       <div className={classes.header}>
-        <h1>Besh Taco</h1>
+        <h1 style={{ cursor: "pointer" }}>Besh Taco</h1>
         <HeaderCartButton />
       </div>
       <div className={classes["main-image"]}>

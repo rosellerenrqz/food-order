@@ -1,0 +1,16 @@
+.form {
+  text-align: right;
+}
+
+.button {
+  background-color: var(--red);
+  color: var(--light);
+}
+
+.button:hover {
+  opacity: 70%;
+}
+
+.button:active {
+  opacity: 45%;
+}

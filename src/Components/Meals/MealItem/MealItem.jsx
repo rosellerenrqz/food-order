@@ -14,11 +14,11 @@ const MealItem = (props) => {
       <div>
         <Input
           label="Amount:"
+          id="amount"
           type="number"
           min="1"
           max="10"
           step="1"
-          defaultValue="1"
         />
         <MealItemForm />
       </div>

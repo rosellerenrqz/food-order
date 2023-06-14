@@ -6,7 +6,7 @@
 
 html {
   font-family: "Noto Sans Jp", sans-serif;
-  background-color: #f8f9fa;
+  background-color: var(--gray-dark);
 }
 
 body {

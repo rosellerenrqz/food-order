@@ -22,9 +22,10 @@
 .closeBtn {
   background-color: var(--red);
   color: var(--light);
-  margin: 0 1rem;
+  margin: 0.3rem 0.2rem;
 }
 
 .orderBtn {
   background-color: var(--yellow);
+  margin: 0.3rem 0.2rem;
 }

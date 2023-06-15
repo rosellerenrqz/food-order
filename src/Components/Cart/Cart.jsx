@@ -23,7 +23,9 @@ const Cart = (props) => {
         <span>₱1,000</span>
       </div>
       <div className={classes.actions}>
-        <Button className={classes.closeBtn}>Close</Button>
+        <Button className={classes.closeBtn} onClick={props.hideCart}>
+          Close
+        </Button>
         <Button className={classes.orderBtn}>Order</Button>
       </div>
     </Modal>

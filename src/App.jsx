@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import MainHeader from "./Components/Layout/MainHeader/MainHeader";
 import Meals from "./Components/Meals/Meals/Meals";
 import Cart from "../src/Components/Cart/Cart";
+
 const App = () => {
+  const [cartIsVisible, setCartIsVisible] = useState(false);
+
+  const showCartHandler = () => {
+    setCartIsVisible(true);
+  };
+
+  const hideCartHandler = () => {
+    setCartIsVisible(false);
+  };
+
   return (
     <React.Fragment>
-      <Cart />
-      <MainHeader />
+      {cartIsVisible && (
+        <Cart showCart={showCartHandler} hideCart={hideCartHandler} />
+      )}
+      <MainHeader showCart={showCartHandler} />
       <Meals />
     </React.Fragment>
   );

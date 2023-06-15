@@ -13,7 +13,7 @@ const MealItem = (props) => {
       </div>
       <div>
         <Input
-          label="Amount:"
+          label="Quantity:"
           id="amount"
           type="number"
           min="1"

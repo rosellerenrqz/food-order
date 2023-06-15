@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import MealItemForm from "../MealItem/MealItemForm";
 import Input from "../../../UI/Input/Input";
 import classes from "./MealItem.module.css";
 
 const MealItem = (props) => {
+  const [inputValue, setInputValue] = useState("");
+
+  const handleInputChange = (e) => {
+    let value = e.target.value.trim();
+
+    if (value === "" || isNaN(value)) {
+      setInputValue("");
+    } else {
+      value = parseInt(value, 10);
+      setInputValue(value);
+    }
+  };
+
   return (
     <li className={classes.meal}>
       <div>
@@ -15,10 +28,10 @@ const MealItem = (props) => {
         <Input
           label="Quantity:"
           id="amount"
-          type="number"
-          min="1"
-          max="10"
-          step="1"
+          type="text"
+          inputMode="numeric"
+          onChange={handleInputChange}
+          value={inputValue}
         />
         <MealItemForm />
       </div>

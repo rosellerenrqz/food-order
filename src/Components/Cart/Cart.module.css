@@ -18,3 +18,13 @@
 .actions {
   text-align: right;
 }
+
+.closeBtn {
+  background-color: var(--red);
+  color: var(--light);
+  margin: 0 1rem;
+}
+
+.orderBtn {
+  background-color: var(--yellow);
+}

@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import classes from "./Cart.module.css";
 import Button from "../../UI/Button/Button";
-
+import CartContext from "../../Auth/CartContext/CartContext";
 import Modal from "../../UI/Modal/Modal";
 
 const Cart = (props) => {
+  const cartContext = useContext(CartContext);
+
   const cartItems = (
     <ul className={classes["cart-items"]}>
       {[{ id: "m1", name: "Original Besh Taco", quantity: 2, price: 69 }].map(

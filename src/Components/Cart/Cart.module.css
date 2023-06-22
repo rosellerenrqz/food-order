@@ -27,5 +27,6 @@
 
 .orderBtn {
   background-color: var(--yellow);
+  color: var(--light);
   margin: 0.3rem 0.2rem;
 }

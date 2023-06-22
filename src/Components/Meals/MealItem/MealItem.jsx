@@ -1,20 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import MealItemForm from "../MealItem/MealItemForm";
-import Input from "../../../UI/Input/Input";
 import classes from "./MealItem.module.css";
+import CartContext from "../../../Auth/CartContext/CartContext";
 
 const MealItem = (props) => {
-  const [inputValue, setInputValue] = useState("");
-
-  const handleInputChange = (e) => {
-    let value = e.target.value.trim();
-
-    if (value === "" || isNaN(value)) {
-      setInputValue("");
-    } else {
-      value = parseInt(value, 10);
-      setInputValue(value);
-    }
+  const cartContext = useContext(CartContext);
+  const addToCartHandler = (amount) => {
+    cartContext.addItem({
+      id: props.id,
+      name: props.name,
+      amount: amount,
+      price: props.price,
+    });
   };
 
   return (
@@ -25,15 +22,7 @@ const MealItem = (props) => {
         <div className={classes.price}>₱{props.price}</div>
       </div>
       <div>
-        <Input
-          label="Quantity:"
-          id="amount"
-          type="text"
-          inputMode="numeric"
-          onChange={handleInputChange}
-          value={inputValue}
-        />
-        <MealItemForm />
+        <MealItemForm onAddToCart={addToCartHandler} />
       </div>
     </li>
   );

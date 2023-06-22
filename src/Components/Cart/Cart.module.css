@@ -30,3 +30,13 @@
   color: var(--light);
   margin: 0.3rem 0.2rem;
 }
+
+.closeBtn:hover,
+.orderBtn:hover {
+  opacity: 70%;
+}
+
+.closeBtn:active,
+.orderBtn:active {
+  opacity: 50%;
+}

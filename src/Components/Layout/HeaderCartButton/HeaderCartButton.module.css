@@ -18,3 +18,11 @@
   margin-left: 1rem;
   font-weight: bold;
 }
+
+.button:hover {
+  opacity: 90%;
+}
+
+.button:active {
+  opacity: 80%;
+}

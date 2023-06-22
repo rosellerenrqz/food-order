@@ -30,9 +30,11 @@ const MealItemForm = (props) => {
       enteredAmountNumber > 5
     ) {
       setAmountIsValid(false);
+      amountInputRef.current.value = "";
       return;
+    } else {
+      setAmountIsValid(true);
     }
-
     props.onAddToCart(enteredAmountNumber);
     amountInputRef.current.value = "";
   };
@@ -42,11 +44,9 @@ const MealItemForm = (props) => {
       <Input
         ref={amountInputRef}
         label="Quantity:"
-        input={{
-          id: "amount" + props.id,
-          type: "text",
-          inputMode: "numeric",
-        }}
+        id="amount"
+        type="number"
+        inputMode="numeric"
       />
       <Button type="submit" className={classes.button}>
         + Add

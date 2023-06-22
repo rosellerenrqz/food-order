@@ -6,7 +6,6 @@ import Input from "../../../UI/Input/Input";
 const MealItemForm = (props) => {
   const [amountIsValid, setAmountIsValid] = useState(true);
   const amountInputRef = useRef();
-  // const [inputValue, setInputValue] = useState("");
 
   // const handleInputChange = (e) => {
   //   let value = e.target.value.trim();
@@ -22,7 +21,7 @@ const MealItemForm = (props) => {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    const enteredAmount = amountInputRef.current.value;
+    const enteredAmount = amountInputRef.current.value.trim();
     const enteredAmountNumber = +enteredAmount;
 
     if (
@@ -35,6 +34,7 @@ const MealItemForm = (props) => {
     }
 
     props.onAddToCart(enteredAmountNumber);
+    amountInputRef.current.value = "";
   };
 
   return (
@@ -42,13 +42,19 @@ const MealItemForm = (props) => {
       <Input
         ref={amountInputRef}
         label="Quantity:"
-        id="amount"
-        type="text"
-        inputMode="numeric"
+        input={{
+          id: "amount" + props.id,
+          type: "text",
+          inputMode: "numeric",
+        }}
       />
-      <Button className={classes.button}>+ Add</Button>
+      <Button type="submit" className={classes.button}>
+        + Add
+      </Button>
       {!amountIsValid && (
-        <p>Invalid Input! Please Enter A Valid Amount (1-5).</p>
+        <p style={{ color: "red", fontSize: ".8rem" }}>
+          Invalid Input! Please Enter A Valid Amount (1-5).
+        </p>
       )}
     </form>
   );

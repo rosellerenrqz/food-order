@@ -5,6 +5,7 @@ import CartContext from "../../../Auth/CartContext/CartContext";
 
 const MealItem = (props) => {
   const cartContext = useContext(CartContext);
+
   const addToCartHandler = (amount) => {
     cartContext.addItem({
       id: props.id,

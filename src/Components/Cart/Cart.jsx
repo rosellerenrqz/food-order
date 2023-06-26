@@ -18,6 +18,7 @@ const Cart = (props) => {
     <ul className={classes["cart-items"]}>
       {cartContext.items.map((item) => (
         <CartItem
+          key={item.id}
           name={item.name}
           price={item.price}
           amount={item.amount}

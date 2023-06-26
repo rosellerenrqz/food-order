@@ -6,6 +6,7 @@ import Modal from "../../UI/Modal/Modal";
 
 const Cart = (props) => {
   const cartContext = useContext(CartContext);
+  const hasItems = cartContext.items.length > 0;
 
   const cartItems = (
     <ul className={classes["cart-items"]}>
@@ -31,7 +32,7 @@ const Cart = (props) => {
         <Button className={classes.closeBtn} onClick={props.onClose}>
           Close
         </Button>
-        <Button className={classes.orderBtn}>Order</Button>
+        {hasItems && <Button className={classes.orderBtn}>Order</Button>}
       </div>
     </Modal>
   );

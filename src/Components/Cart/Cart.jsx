@@ -4,14 +4,26 @@ import Button from "../../UI/Button/Button";
 import CartContext from "../../Auth/CartContext/CartContext";
 import Modal from "../../UI/Modal/Modal";
 
+import CartItem from "./CartItem";
+
 const Cart = (props) => {
   const cartContext = useContext(CartContext);
   const hasItems = cartContext.items.length > 0;
 
+  const cartItemRemoveHandler = (id) => {};
+
+  const cartItemAddHandler = (item) => {};
+
   const cartItems = (
     <ul className={classes["cart-items"]}>
       {cartContext.items.map((item) => (
-        <li key={item.id}>{item.name}</li>
+        <CartItem
+          name={item.name}
+          price={item.price}
+          amount={item.amount}
+          onRemove={cartItemRemoveHandler}
+          onAdd={cartItemAddHandler}
+        />
       ))}
     </ul>
   );

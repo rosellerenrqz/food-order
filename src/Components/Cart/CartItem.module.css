@@ -2,18 +2,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid var(--red);
+  border-bottom: 2px solid var(--gray-dark);
   padding: 1rem 0;
   margin: 1rem 0;
 }
 
 .cart-item h2 {
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 0.5 rem 0;
   color: var(--dark);
 }
 
 .summary {
-  width: 10rem;
+  width: 6rem;
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -9,20 +9,23 @@ const Cart = (props) => {
 
   const cartItems = (
     <ul className={classes["cart-items"]}>
-      {[{ id: "m1", name: "Original Besh Taco", quantity: 2, price: 69 }].map(
-        (item) => (
-          <li key={item.id}>{item.name}</li>
-        )
-      )}
+      {cartContext.items.map((item) => (
+        <li key={item.id}>{item.name}</li>
+      ))}
     </ul>
   );
+
+  const totalAmount = `₱${cartContext.totalAmount}`;
+
+  console.log(totalAmount);
+  console.log(cartItems);
 
   return (
     <Modal onClose={props.onClose}>
       {cartItems}
       <div className={classes.total}>
         <span>Total Amount:</span>
-        <span>₱1,000</span>
+        <span>{totalAmount}</span>
       </div>
       <div className={classes.actions}>
         <Button className={classes.closeBtn} onClick={props.onClose}>

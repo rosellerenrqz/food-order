@@ -16,6 +16,8 @@ const MealItem = (props) => {
   };
 
   return (
+    //FOR FUTURE REFERENCE, PUTTING UP A MODAL PHOTO OF EACH PRODUCTS EVERYTIME IT WILL BE CLICKED
+
     <li className={classes.meal}>
       <div style={{ cursor: "pointer" }}>
         <h3>{props.name}</h3>

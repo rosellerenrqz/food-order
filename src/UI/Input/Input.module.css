@@ -1,6 +1,7 @@
 .input {
   display: flex;
   align-items: center;
+  justify-content: flex-end; /* Align the input component to the right */
   margin-bottom: 0.5rem;
 }
 
@@ -14,5 +15,4 @@
   border-radius: 12px;
   border: 1px solid #ccc;
   font: inherit;
-  padding-left: 0.5rem;
 }

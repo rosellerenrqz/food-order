@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Card from "../../../UI/Card/Card";
 import MealItem from "../MealItem/MealItem";
 import classes from "./AvailableMeals.module.css";
@@ -7,32 +7,46 @@ import tacos from "../../../assets/taco-images/4pcs tacos.jpg";
 import beshtaco from "../../../assets/taco-images/besh taco.jpg";
 import TacoCarnitas from "../../../assets/taco-images/4tacos.jpg";
 
-const DUMMY_MEALS = [
-  {
-    id: "m1",
-    name: "Original Besh Taco",
-    description: "lorem lorem lorem lorem",
-    price: 69,
-    imgSrc: tacos,
-  },
-  {
-    id: "m2",
-    name: "Budget Taco",
-    description: "lorem 1 pc of original taco with bigger size",
-    price: 35,
-    imgSrc: beshtaco,
-  },
-  {
-    id: "m3",
-    name: "Taco Carnitas",
-    description: "lorem lorem lorem lorem",
-    price: 50,
-    imgSrc: TacoCarnitas,
-  },
-];
-
 const AvailableMeals = () => {
-  const meals = DUMMY_MEALS.map((meal) => (
+  const [meals, setMeals] = useState([]);
+
+  const getMealImage = (mealName) => {
+    switch (mealName) {
+      case "Original Besh Taco":
+        return tacos;
+      case "Budget Taco":
+        return beshtaco;
+      case "Taco Carnitas":
+        return TacoCarnitas;
+      default:
+        return ""; // Provided default image source if no match is found
+    }
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(
+        "https://beshtaco-default-rtdb.firebaseio.com/meals.json"
+      );
+      const data = await response.json();
+
+      const loadedData = [];
+
+      for (const key in data) {
+        loadedData.push({
+          id: key,
+          name: data[key].name,
+          description: data[key].description,
+          price: data[key].price,
+          imgSrc: getMealImage(data[key].name), //using function to get the value of the img src.
+        });
+      }
+      setMeals(loadedData);
+    };
+    fetchData();
+  }, []);
+
+  const mealsData = meals.map((meal) => (
     <MealItem
       key={meal.id}
       id={meal.id}
@@ -47,7 +61,7 @@ const AvailableMeals = () => {
     <>
       <section className={classes.meals}>
         <Card>
-          <ul>{meals}</ul>
+          <ul>{mealsData}</ul>
         </Card>
       </section>
     </>

@@ -9,6 +9,7 @@ import TacoCarnitas from "../../../assets/taco-images/4tacos.jpg";
 
 const AvailableMeals = () => {
   const [meals, setMeals] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const getMealImage = (mealName) => {
     switch (mealName) {
@@ -25,6 +26,7 @@ const AvailableMeals = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true);
       const response = await fetch(
         "https://beshtaco-default-rtdb.firebaseio.com/meals.json"
       );
@@ -42,9 +44,14 @@ const AvailableMeals = () => {
         });
       }
       setMeals(loadedData);
+      setIsLoading(false);
     };
     fetchData();
   }, []);
+
+  if (isLoading) {
+    return <p className={classes.mealsLoading}>Loading...</p>;
+  }
 
   const mealsData = meals.map((meal) => (
     <MealItem

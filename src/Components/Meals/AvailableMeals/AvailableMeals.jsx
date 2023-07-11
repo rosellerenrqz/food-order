@@ -10,6 +10,7 @@ import TacoCarnitas from "../../../assets/taco-images/4tacos.jpg";
 const AvailableMeals = () => {
   const [meals, setMeals] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [fetchError, setFetchError] = useState(null);
 
   const getMealImage = (mealName) => {
     switch (mealName) {
@@ -30,6 +31,11 @@ const AvailableMeals = () => {
       const response = await fetch(
         "https://beshtaco-default-rtdb.firebaseio.com/meals.json"
       );
+
+      if (!response.ok) {
+        throw new Error("Failed to Fetch Data!");
+      }
+
       const data = await response.json();
 
       const loadedData = [];
@@ -46,11 +52,23 @@ const AvailableMeals = () => {
       setMeals(loadedData);
       setIsLoading(false);
     };
-    fetchData();
+
+    fetchData().catch((error) => {
+      setIsLoading(false);
+      setFetchError(error.message);
+    }); //.catch() catching error instead of using try catch because useeffect returns a promise w/c reject the try catch error.
   }, []);
 
   if (isLoading) {
     return <p className={classes.mealsLoading}>Loading...</p>;
+  }
+
+  if (fetchError) {
+    return (
+      <p className={classes.mealsError}>
+        <span>{fetchError}</span>
+      </p>
+    );
   }
 
   const mealsData = meals.map((meal) => (

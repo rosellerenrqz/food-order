@@ -39,6 +39,12 @@ const MealItemForm = (props) => {
     amountInputRef.current.value = "";
   };
 
+  const invalidInput = (
+    <p style={{ color: "red", fontSize: ".8rem" }}>
+      Invalid Input! Please Enter A Valid Amount (1-5).
+    </p>
+  );
+
   return (
     <form className={classes.form} onSubmit={submitHandler}>
       <Input
@@ -51,11 +57,7 @@ const MealItemForm = (props) => {
       <Button type="submit" className={classes.button}>
         + Add
       </Button>
-      {!amountIsValid && (
-        <p style={{ color: "red", fontSize: ".8rem" }}>
-          Invalid Input! Please Enter A Valid Amount (1-5).
-        </p>
-      )}
+      {!amountIsValid && invalidInput}
     </form>
   );
 };

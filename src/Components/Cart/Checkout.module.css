@@ -1,6 +1,6 @@
 .form {
   margin: 2rem 0;
-  height: 20rem;
+  height: 26rem;
   overflow: scroll;
 }
 
@@ -48,4 +48,16 @@
 .cancel:active,
 .orderBtn:active {
   opacity: 50%;
+}
+
+.invalid label {
+  color: var(--red);
+}
+
+.invalid input {
+  border-color: var(--red);
+}
+
+.invalid input::placeholder {
+  color: white;
 }

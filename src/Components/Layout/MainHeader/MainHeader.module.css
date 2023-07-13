@@ -8,7 +8,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 10rem;
-  background-color: var(--red);
+  background-color: var(--yellow);
   z-index: 10;
 }
 

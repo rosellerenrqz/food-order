@@ -28,11 +28,16 @@ const Cart = (props) => {
 
   const submitOrderHandler = async (userData) => {
     setIsSubmitting(true);
-    await fetch("https://beshtaco-default-rtdb.firebaseio.com/orders.jsosn", {
+    await fetch("https://beshtaco-default-rtdb.firebaseio.com/orders.json", {
       method: "POST",
       body: JSON.stringify({
         user: userData,
-        orderedMeals: cartContext.items,
+        orderedMeals: [
+          ...cartContext.items.map(
+            (item) => `${item.name} -  ${item.amount}pcs.`
+          ),
+          `Total Amount: ₱${cartContext.totalAmount}`,
+        ],
       }),
     });
     setIsSubmitting(false);

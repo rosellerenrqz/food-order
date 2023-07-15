@@ -9,6 +9,8 @@ import CartItem from "./CartItem";
 
 const Cart = (props) => {
   const [isOrdered, setIsOrdered] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [didSubmit, setDidSubmit] = useState(false);
   const cartContext = useContext(CartContext);
   const hasItems = cartContext.items.length > 0;
 
@@ -24,14 +26,18 @@ const Cart = (props) => {
     setIsOrdered(true);
   };
 
-  const submitOrderHandler = (userData) => {
-    fetch("https://beshtaco-default-rtdb.firebaseio.com/orders.json", {
+  const submitOrderHandler = async (userData) => {
+    setIsSubmitting(true);
+    await fetch("https://beshtaco-default-rtdb.firebaseio.com/orders.jsosn", {
       method: "POST",
       body: JSON.stringify({
         user: userData,
         orderedMeals: cartContext.items,
       }),
     });
+    setIsSubmitting(false);
+    setDidSubmit(true);
+    cartContext.clearCart();
   };
 
   const cartItems = (
@@ -67,8 +73,8 @@ const Cart = (props) => {
     </div>
   );
 
-  return (
-    <Modal onClose={props.onClose}>
+  const modalCartContent = (
+    <React.Fragment>
       {cartItems}
       <div className={classes.total}>
         <span>Total Amount:</span>
@@ -78,6 +84,26 @@ const Cart = (props) => {
         <Checkout onSubmitOrder={submitOrderHandler} onCancel={props.onClose} />
       )}
       {!isOrdered && modalActions}
+    </React.Fragment>
+  );
+
+  const isSubmittingContent = <p>Sending Taco Order...</p>;
+  const didSubmitContent = (
+    <div>
+      <div style={{ display: "flex", flexWrap: "wrap" }}>
+        <p style={{ flex: "1" }}>Successfully Sent Taco Orders!</p>
+        <Button className={classes.closeBtn} onClick={props.onClose}>
+          Close
+        </Button>
+      </div>
+    </div>
+  );
+
+  return (
+    <Modal onClose={props.onClose}>
+      {!isSubmitting && !didSubmit && modalCartContent}
+      {!isSubmitting && didSubmit && didSubmitContent}
+      {isSubmitting && isSubmittingContent}
     </Modal>
   );
 };

@@ -4,6 +4,7 @@ import Button from "../../UI/Button/Button";
 
 const emptyValue = (value) => value.trim() === "";
 const isValidNumber = (value) => value.trim().length === 11;
+//need proper validations.
 
 const Checkout = (props) => {
   const [formValidity, setFormValidity] = useState({
@@ -38,6 +39,11 @@ const Checkout = (props) => {
       city: enteredCityIsValid,
     });
 
+    nameInputRef.current.value = "";
+    addressInputRef.current.value = "";
+    numberInputRef.current.value = "";
+    cityInputRef.current.value = "";
+
     const formIsValid =
       enteredNameIsValid &&
       enteredAddressIsValid &&
@@ -47,7 +53,12 @@ const Checkout = (props) => {
     if (!formIsValid) {
       return;
     }
-    //submit cart data
+    props.onSubmitOrder({
+      name: enteredName,
+      address: enteredAddress,
+      number: enteredNumber,
+      city: enteredCity,
+    });
   };
 
   //classNames

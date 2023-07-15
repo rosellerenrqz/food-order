@@ -24,6 +24,16 @@ const Cart = (props) => {
     setIsOrdered(true);
   };
 
+  const submitOrderHandler = (userData) => {
+    fetch("https://beshtaco-default-rtdb.firebaseio.com/orders.json", {
+      method: "POST",
+      body: JSON.stringify({
+        user: userData,
+        orderedMeals: cartContext.items,
+      }),
+    });
+  };
+
   const cartItems = (
     <ul className={classes["cart-items"]}>
       {cartContext.items.map((item) => (
@@ -64,7 +74,9 @@ const Cart = (props) => {
         <span>Total Amount:</span>
         <span>{totalAmount}</span>
       </div>
-      {isOrdered && <Checkout onCancel={props.onClose} />}
+      {isOrdered && (
+        <Checkout onSubmitOrder={submitOrderHandler} onCancel={props.onClose} />
+      )}
       {!isOrdered && modalActions}
     </Modal>
   );
